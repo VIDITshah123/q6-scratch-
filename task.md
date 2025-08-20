@@ -29,52 +29,61 @@
 - [x] Set up logging and error handling
 
 ### 2.2 Authentication & Authorization
-- [ ] Implement JWT authentication
-- [ ] Create middleware for role-based access control
-- [ ] Implement user registration and login endpoints
-- [ ] Set up password hashing with bcrypt
+- [x] Implement JWT authentication
+- [x] Create middleware for role-based access control
+- [x] Implement user registration and login endpoints
+- [x] Set up password hashing with bcrypt
 
 ### 2.3 API Endpoints
 
 #### Company Management (Admin)
-- [ ] GET /api/companies - List all companies
-- [ ] POST /api/companies - Add new company
-- [ ] PUT /api/companies/:id - Update company
-- [ ] DELETE /api/companies/:id - Remove company
+- [x] GET /api/companies - List all companies
+- [x] POST /api/companies - Add new company
+- [x] PUT /api/companies/:id - Update company
+- [x] DELETE /api/companies/:id - Remove company
 
 #### Employee Management (Company Admin)
-- [ ] GET /api/employees - List all employees
-- [ ] POST /api/employees - Add new employee
-- [ ] PUT /api/employees/:id - Update employee
-- [ ] DELETE /api/employees/:id - Remove employee
-- [ ] PUT /api/employees/:id/role - Update employee role
+- [x] GET /api/employees - List all employees
+- [x] POST /api/employees - Add new employee
+- [x] PUT /api/employees/:id - Update employee
+- [x] DELETE /api/employees/:id - Remove employee
+- [x] PUT /api/employees/:id/role - Update employee role
 
 #### Question Management
-- [ ] GET /api/questions - List all questions (with filtering/sorting)
-- [ ] POST /api/questions - Add new question
-- [ ] PUT /api/questions/:id - Update question
-- [ ] DELETE /api/questions/:id - Delete question
-- [ ] GET /api/questions/:id - Get question details
-- [ ] POST /api/questions/:id/vote - Vote on question
-- [ ] POST /api/questions/:id/invalidate - Mark question as invalid
+- [x] GET /api/questions - List all questions (with filtering/sorting)
+- [x] POST /api/questions - Add new question
+- [x] PUT /api/questions/:id - Update question
+- [x] DELETE /api/questions/:id - Delete question
+- [x] GET /api/questions/:id - Get question details
+- [x] POST /api/questions/:id/vote - Vote on question
+- [x] POST /api/questions/:id/invalidate - Mark question as invalid
 
 #### Categories & Subcategories
-- [ ] GET /api/categories - List all categories
-- [ ] POST /api/categories - Add new category
-- [ ] GET /api/subcategories - List subcategories
-- [ ] POST /api/subcategories - Add new subcategory
+- [x] GET /api/categories - List all categories (with hierarchical support)
+- [x] POST /api/categories - Add new category
+- [x] GET /api/categories/:id/subcategories - List subcategories
+- [x] POST /api/categories - Add new subcategory (using parentId)
+- [x] GET /api/categories/:id - Get category details
+- [x] PUT /api/categories/:id - Update category
+- [x] DELETE /api/categories/:id - Delete category
+- [x] POST /api/categories/:id/move-questions - Move questions to another category
 
 ### 2.4 Business Logic
-- [ ] Implement question scoring system
-- [ ] Add validation for question structure
-- [ ] Implement voting logic (one vote per user per question)
-- [ ] Add audit logging for sensitive operations
-
-### 2.5 Testing
-- [ ] Write unit tests for all services
-- [ ] Write integration tests for API endpoints
-- [ ] Set up test database
-- [ ] Implement test coverage reporting
+- [x] Implement question scoring system
+  - [x] Score calculation based on votes, time decay, and accuracy
+  - [x] User reputation system
+  - [x] Periodic score updates
+- [x] Add validation for question structure
+  - [x] Input validation for all endpoints
+  - [x] Business rule validation (e.g., prevent self-voting)
+- [x] Implement voting logic (one vote per user per question)
+  - [x] Upvote/downvote functionality
+  - [x] Prevent duplicate votes
+  - [x] Vote change/removal
+- [x] Add audit logging for sensitive operations
+  - [x] Log all write operations
+  - [x] Track user actions and changes
+  - [x] Redact sensitive information
 
 ## Phase 3: Frontend Development
 
