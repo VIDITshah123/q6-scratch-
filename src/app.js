@@ -3,8 +3,8 @@ const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
 const morgan = require('morgan');
-const path = require('path');
-const { createLogger, format, transports } = require('winston');
+const Database = require('./utils/db');
+const db = new Database();
 const logger = require('./utils/logger');
 const { StatusCodes } = require('http-status-codes');
 const ApiError = require('./utils/apiError');
@@ -20,39 +20,6 @@ const categoryRoutes = require('./routes/categoryRoutes');
 // Initialize express app
 const app = express();
 
-// Create logs directory if it doesn't exist
-const fs = require('fs');
-const logDir = 'logs';
-if (!fs.existsSync(logDir)) {
-  fs.mkdirSync(logDir);
-}
-
-// Configure logger
-const logger = createLogger({
-  level: process.env.LOG_LEVEL || 'info',
-  format: format.combine(
-    format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }),
-    format.errors({ stack: true }),
-    format.splat(),
-    format.json()
-  ),
-  defaultMeta: { service: 'question-bank-api' },
-  transports: [
-    new transports.Console({
-      format: format.combine(
-        format.colorize(),
-        format.simple()
-      )
-    }),
-    new transports.File({ 
-      filename: path.join(logDir, 'error.log'), 
-      level: 'error' 
-    }),
-    new transports.File({ 
-      filename: path.join(logDir, 'combined.log') 
-    })
-  ]
-});
 
 // Middleware
 app.use(helmet()); // Security headers

@@ -1,4 +1,4 @@
-const sqlite3 = require('sqlite3').verbose();
+const sqlite3 = require('sqlite3');
 const path = require('path');
 require('dotenv').config();
 
@@ -47,7 +47,8 @@ class Database {
         return new Promise((resolve, reject) => {
             this.db.run(sql, params, function(err) {
                 if (err) {
-                    console.error('Database command error:', err);
+                    console.error('Database connection error:', err);
+                    throw err;
                     return reject(err);
                 }
                 resolve({ id: this.lastID, changes: this.changes });
@@ -127,17 +128,4 @@ class Database {
     }
 }
 
-// Create a single instance of the database
-const db = new Database();
-
-// Handle process termination to close the database connection
-process.on('SIGINT', () => {
-    db.close()
-        .then(() => process.exit(0))
-        .catch(err => {
-            console.error('Error closing database:', err);
-            process.exit(1);
-        });
-});
-
-module.exports = db;
+module.exports = Database;
